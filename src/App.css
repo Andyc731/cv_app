@@ -50,3 +50,19 @@
 div {
   color: black;
 }
+
+form {
+  min-width: 500px;
+  margin: 30px;
+  background-color: #61dafbaa;
+  border-radius: 10px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+h2 {
+  color: white;
+}
