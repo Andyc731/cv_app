@@ -35,9 +35,9 @@ function App() {
 
 function Form() {
   const [generalFormData, setGeneralFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
+    name: 'Andy Chung',
+    email: 'andychc731@gmail.com',
+    phone: '555-555-5555',
   });
 
   const [educationFormData, setEducationFormData] = useState({
@@ -56,6 +56,8 @@ function Form() {
     name: 'Andy Chung',
     email: 'andychc731@gmail.com',
     phone: '555-555-5555',
+    education: [],
+    experience: []
   });
 
   const [inputShow, setInputShow] = useState({
@@ -86,14 +88,34 @@ function Form() {
     }
   }
 
-  const submitHandler = (event) => {
+  const submitHandler = (event, formType) => {
+
     event.preventDefault();
-    setPageContent(() => ({
-      name: generalFormData.name,
-      email: generalFormData.email,
-      phone: generalFormData.phone
-    }));
+
+    if (formType === 'general') {
+      setPageContent((prevPage) => ({
+        ...prevPage,
+        name: generalFormData.name,
+        email: generalFormData.email,
+        phone: generalFormData.phone
+      }));
+    }
+
+    if (formType === 'education') {
+      setPageContent((prevPage) => ({
+        ...prevPage,
+        education: [...prevPage.education]
+      }))
+    }
+
+    if (formType === 'experience') {
+      setPageContent((prevPage) => ({
+        ...prevPage,
+        experience: [...prevPage.experience]
+      }))
+    }
   }
+  
 
   const buttonHandler = (event) => {
     event.target.type === 'button' ? 
@@ -111,7 +133,7 @@ function Form() {
   return (
     <>
       <div>
-        <form action="" onSubmit={submitHandler}>
+        <form action="" onSubmit={(e) => submitHandler(e, 'general')}>
           {inputShow.general && (
             <div>
               <input 
@@ -140,7 +162,7 @@ function Form() {
           <button type='button' name='general' onClick={buttonHandler}>Edit</button>
           <button type='submit' name='general' onClick={buttonHandler}>Submit</button>
         </form>
-        <form action="" onSubmit={submitHandler}>
+        <form action="" onSubmit={(e) => submitHandler(e, 'education')}>
         {inputShow.education && (
             <div>
               <input 
@@ -155,7 +177,7 @@ function Form() {
           <button type='button' name='education' onClick={buttonHandler}>Edit</button>
           <button type='submit' name='education' onClick={buttonHandler}>Submit</button>
         </form>
-        <form action="" onSubmit={submitHandler}>
+        <form action="" onSubmit={(e) => submitHandler(e, 'experience')}>
          {inputShow.experience && (
             <div>
               <input 
