@@ -40,71 +40,140 @@ function Form() {
     phone: '',
   });
 
-  const [pageContent, setPageContent] = useState({
+  const [educationFormData, setEducationFormData] = useState({
     name: '',
-    email: '',
-    phone: '',
+    title: '',
+    date: ''
+  })
+
+  const [experienceFormData, setExperienceFormData] = useState({
+    name: '',
+    title: '',
+    date: ''
+  })
+
+  const [pageContent, setPageContent] = useState({
+    name: 'Andy Chung',
+    email: 'andychc731@gmail.com',
+    phone: '555-555-5555',
   });
 
-  const inputHandler = event => {
+  const [inputShow, setInputShow] = useState({
+    general: true,
+    education: true,
+    experience: true
+  })
+
+  const inputHandler = (event, formType) => {
     const {name, value} = event.target;
-    setGeneralFormData((prevForm) => ({
-      ...prevForm,
-      [name]: value,
-    }))
+    if (formType === 'general') {
+      setGeneralFormData((prevForm) => ({
+        ...prevForm,
+        [name]: value,
+      }))
+    }
+    if (formType === 'education') {
+      setEducationFormData((prevForm) => ({
+        ...prevForm,
+        [name]: value
+      }))
+    }
+    if (formType === 'experience') {
+      setExperienceFormData((prevForm) => ({
+        ...prevForm,
+        [name]: value
+      }))
+    }
   }
 
-  const submitHandler = () => {
-    setPageContent(prevContent => ({
-      ...prevContent,
+  const submitHandler = (event) => {
+    event.preventDefault();
+    setPageContent(() => ({
       name: generalFormData.name,
       email: generalFormData.email,
       phone: generalFormData.phone
     }));
   }
 
+  const buttonHandler = (event) => {
+    event.target.type === 'button' ? 
+    setInputShow(prevShow => ({
+      ...prevShow,
+      [event.target.name]: true
+    }))
+    :
+    setInputShow(prevShow => ({
+      ...prevShow,
+      [event.target.name]: false
+    }))
+  }
+
   return (
     <>
       <div>
-        <form action="">
-          <input 
-            type="text"
-            name='name'
-            value={generalFormData.name}
-            onChange={inputHandler}
-            placeholder='Name'
-          />
-          <input 
-            type="email"
-            name='email'
-            value={generalFormData.email}
-            onChange={inputHandler}
-            placeholder='Email'
-          />
-          <input 
-            type="tel"
-            name='phone'
-            value={generalFormData.phone}
-            onChange={inputHandler}
-            placeholder='Phone'
-          />
-          <button 
-            type='button'
-            onClick={submitHandler}
-          >
-            Submit
-          </button>
+        <form action="" onSubmit={submitHandler}>
+          {inputShow.general && (
+            <div>
+              <input 
+                type="text"
+                name='name'
+                value={generalFormData.name}
+                onChange={(e) => inputHandler(e, 'general')}
+                placeholder='Name'
+              />
+              <input 
+                type="email"
+                name='email'
+                value={generalFormData.email}
+                onChange={(e) => inputHandler(e, 'general')}
+                placeholder='Email'
+              />
+              <input 
+                type="tel"
+                name='phone'
+                value={generalFormData.phone}
+                onChange={(e) => inputHandler(e, 'general')}
+                placeholder='Phone'
+              />
+            </div>
+          )}
+          <button type='button' name='general' onClick={buttonHandler}>Edit</button>
+          <button type='submit' name='general' onClick={buttonHandler}>Submit</button>
+        </form>
+        <form action="" onSubmit={submitHandler}>
+        {inputShow.education && (
+            <div>
+              <input 
+                type="text"
+                name='name'
+                value={educationFormData.name}
+                onChange={(e) => inputHandler(e, 'education')}
+                placeholder='Name'
+              />
+            </div>
+          )}
+          <button type='button' name='education' onClick={buttonHandler}>Edit</button>
+          <button type='submit' name='education' onClick={buttonHandler}>Submit</button>
+        </form>
+        <form action="" onSubmit={submitHandler}>
+         {inputShow.experience && (
+            <div>
+              <input 
+                type="text"
+                name='name'
+                value={experienceFormData.name}
+                onChange={(e) => inputHandler(e, 'experience')}
+                placeholder='Name'
+              />
+            </div>
+          )}
+          <button type='button' name='experience' onClick={buttonHandler}>Edit</button>
+          <button type='submit' name='experience' onClick={buttonHandler}>Submit</button>
         </form>
         <div className='page'>
-          <div>
-            {pageContent.name}
-          </div>
-          <div>
-            {pageContent.email}
-          </div>
-          <div>
-            {pageContent.phone}
-          </div>
+          <div className='name'>{pageContent.name}</div>
+          <div className='email'>{pageContent.email}</div>
+          <div className='phone'>{pageContent.phone}</div>
         </div>
       </div>
     </>
