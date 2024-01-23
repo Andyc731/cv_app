@@ -32,4 +32,83 @@ function App() {
   )
 }
 
-export default App
+
+function Form() {
+  const [generalFormData, setGeneralFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+  });
+
+  const [pageContent, setPageContent] = useState({
+    name: '',
+    email: '',
+    phone: '',
+  });
+
+  const inputHandler = event => {
+    const {name, value} = event.target;
+    setGeneralFormData((prevForm) => ({
+      ...prevForm,
+      [name]: value,
+    }))
+  }
+
+  const submitHandler = () => {
+    setPageContent(prevContent => ({
+      ...prevContent,
+      name: generalFormData.name,
+      email: generalFormData.email,
+      phone: generalFormData.phone
+    }));
+  }
+
+  return (
+    <>
+      <div>
+        <form action="">
+          <input 
+            type="text"
+            name='name'
+            value={generalFormData.name}
+            onChange={inputHandler}
+            placeholder='Name'
+          />
+          <input 
+            type="email"
+            name='email'
+            value={generalFormData.email}
+            onChange={inputHandler}
+            placeholder='Email'
+          />
+          <input 
+            type="tel"
+            name='phone'
+            value={generalFormData.phone}
+            onChange={inputHandler}
+            placeholder='Phone'
+          />
+          <button 
+            type='button'
+            onClick={submitHandler}
+          >
+            Submit
+          </button>
+        </form>
+        <div className='page'>
+          <div>
+            {pageContent.name}
+          </div>
+          <div>
+            {pageContent.email}
+          </div>
+          <div>
+            {pageContent.phone}
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
+
+export default Form
