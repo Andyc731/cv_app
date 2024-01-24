@@ -7,48 +7,44 @@ function Experience({setPageContent, setInputShow, inputShow}) {
         title: '',
         date: '',
         description: ''
-      })
+    })
 
     const submitHandler = (event) => {
-
         event.preventDefault();
     
-
-          setPageContent((prevPage) => ({
+        setPageContent((prevPage) => ({
             ...prevPage,
             experience: [{
-              key: experienceFormData.key,
-              workPlace: experienceFormData.workPlace,
-              title: experienceFormData.title,
-              date: experienceFormData.date,
-              description: experienceFormData.description
+                key: experienceFormData.key,
+                workPlace: experienceFormData.workPlace,
+                title: experienceFormData.title,
+                date: experienceFormData.date,
+                description: experienceFormData.description
             }]
-          }))
-
-      }
+        }))
+    }
 
       const inputHandler = (event) => {
         const {name, value} = event.target;
 
-
-          setExperienceFormData((prevForm) => ({
+        setExperienceFormData((prevForm) => ({
             ...prevForm,
             [name]: value
-          }))
-      }
+        }))
+    }
 
       const buttonHandler = (event) => {
         event.target.type === 'button' ? 
         setInputShow(prevShow => ({
-          ...prevShow,
-          [event.target.name]: true
+            ...prevShow,
+            [event.target.name]: true
         }))
         :
         setInputShow(prevShow => ({
-          ...prevShow,
-          [event.target.name]: false
+            ...prevShow,
+            [event.target.name]: false
         }))
-      }
+    }
 
     return (
     <form action="" onSubmit={(e) => submitHandler(e, 'experience')}>

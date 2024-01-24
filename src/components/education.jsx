@@ -6,43 +6,42 @@ function Education({setPageContent, setInputShow, inputShow}) {
         institution: '',
         degree: '',
         year: '',
-      })
+    })
     
     const submitHandler = (event) => {
-
         event.preventDefault();
     
-          setPageContent((prevPage) => ({
+        setPageContent((prevPage) => ({
             ...prevPage,
             education: [{
-              key: educationFormData.key,
-              institution: educationFormData.institution,
-              degree: educationFormData.degree,
-              year: educationFormData.year,
+                key: educationFormData.key,
+                institution: educationFormData.institution,
+                degree: educationFormData.degree,
+                year: educationFormData.year,
             }]
-          }))
+        }))
     }
 
     const inputHandler = (event, formType) => {
         const {name, value} = event.target;
-          setEducationFormData((prevForm) => ({
+        setEducationFormData((prevForm) => ({
             ...prevForm,
             [name]: value
-          }))
+        }))
     }
 
     const buttonHandler = (event) => {
         event.target.type === 'button' ? 
         setInputShow(prevShow => ({
-          ...prevShow,
-          [event.target.name]: true
+            ...prevShow,
+            [event.target.name]: true
         }))
         :
         setInputShow(prevShow => ({
-          ...prevShow,
-          [event.target.name]: false
+            ...prevShow,
+            [event.target.name]: false
         }))
-      }
+    }
 
     return (
     <form action="" onSubmit={submitHandler}>

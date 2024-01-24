@@ -8,39 +8,39 @@ function General({setPageContent, setInputShow, inputShow}) {
         phone: '555-555-5555',
       });
 
-      const inputHandler = (event) => {
+    const inputHandler = (event) => {
         const {name, value} = event.target;
         
-          setGeneralFormData((prevForm) => ({
+        setGeneralFormData((prevForm) => ({
             ...prevForm,
             [name]: value,
-          }))
+        }))
     }
 
     const submitHandler = (event) => {
 
         event.preventDefault();
     
-          setPageContent((prevPage) => ({
+        setPageContent((prevPage) => ({
             ...prevPage,
             name: generalFormData.name,
             email: generalFormData.email,
             phone: generalFormData.phone
-          }));
+        }));
     }
 
     const buttonHandler = (event) => {
         event.target.type === 'button' ? 
         setInputShow(prevShow => ({
-          ...prevShow,
-          [event.target.name]: true
+            ...prevShow,
+            [event.target.name]: true
         }))
         :
         setInputShow(prevShow => ({
-          ...prevShow,
-          [event.target.name]: false
+            ...prevShow,
+            [event.target.name]: false
         }))
-      }
+    }
 
     return (
     <form action="" onSubmit={submitHandler}>
