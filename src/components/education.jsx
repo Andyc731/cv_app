@@ -48,33 +48,41 @@ function Education({setPageContent, setInputShow, inputShow}) {
     <form action="" onSubmit={submitHandler}>
         <h2>Education</h2>
         {inputShow.education && (
-        <div>
-            <input 
-            type="text"
-            name='institution'
-            value={educationFormData.institution}
-            onChange={inputHandler}
-            placeholder='School'
-            />
-            <input 
-            type="text"
-            name='degree'
-            value={educationFormData.degree}
-            onChange={inputHandler}
-            placeholder='Degree'
-            />
-            <input 
-            type="date"
-            name='startDate'
-            value={educationFormData.startDate}
-            onChange={inputHandler}
-            />
-            <input 
-            type="date"
-            name='endDate'
-            value={educationFormData.endDate}
-            onChange={inputHandler}
-            />
+        <div className="input-container">
+            <div>
+
+                <input 
+                type="text"
+                name='institution'
+                value={educationFormData.institution}
+                onChange={inputHandler}
+                placeholder='School'
+                />
+                <input 
+                type="text"
+                name='degree'
+                value={educationFormData.degree}
+                onChange={inputHandler}
+                placeholder='Degree'
+                />
+            </div>
+            <div className="date-container">
+                <label htmlFor="startDate">Start Date: </label>
+                <input 
+                type="date"
+                name='startDate'
+                value={educationFormData.startDate}
+                onChange={inputHandler}
+                />
+                <label htmlFor="endDate">End Date: </label>
+                <input 
+                type="date"
+                name='endDate'
+                value={educationFormData.endDate}
+                onChange={inputHandler}
+                />
+
+            </div>
         </div>
         )}
         <button type='button' name='education' onClick={buttonHandler}>Edit</button>
