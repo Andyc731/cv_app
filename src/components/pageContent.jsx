@@ -9,8 +9,7 @@ function PageContent (content) {
         <div key={index} className='education'>
             <div>{education.institution}</div>
             <div>{education.degree}</div>
-            <div>{education.year}</div>
-            <div>{education.description}</div>
+            <div>{education.startDate} - {education.endDate}</div>
         </div>
         )
         )}
@@ -18,7 +17,7 @@ function PageContent (content) {
         <div key={index} className='experience'>
             <div>{experience.workPlace}</div>
             <div>{experience.title}</div>
-            <div>{experience.date}</div>
+            <div>{experience.startDate} - {experience.endDate}</div>            
             <div>{experience.description}</div>
         </div>
         )

@@ -13,8 +13,8 @@ function Form() {
     name: 'Andy Chung',
     email: 'andychc731@gmail.com',
     phone: '555-555-5555',
-    education: [{institution: 'blah', degree: 'blah2', year: 'blah3'}],
-    experience: [{workPlace: 'blah', title: 'blah2', date: 'blah3'}]
+    education: [{institution: 'blah', degree: 'blah2', startDate: '2013-03-04', endDate: '2014-06-07'}],
+    experience: [{workPlace: 'blah', title: 'blah2', startDate: '2013-03-04', endDate: '2014-06-07', description: 'blah5'}]
   });
 
   const [inputShow, setInputShow] = useState({

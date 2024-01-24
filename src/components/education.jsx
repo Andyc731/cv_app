@@ -5,7 +5,8 @@ function Education({setPageContent, setInputShow, inputShow}) {
     const [educationFormData, setEducationFormData] = useState({
         institution: '',
         degree: '',
-        year: '',
+        startDate: '',
+        endDate: ''
     })
     
     const submitHandler = (event) => {
@@ -14,10 +15,10 @@ function Education({setPageContent, setInputShow, inputShow}) {
         setPageContent((prevPage) => ({
             ...prevPage,
             education: [{
-                key: educationFormData.key,
                 institution: educationFormData.institution,
                 degree: educationFormData.degree,
-                year: educationFormData.year,
+                startDate: educationFormData.startDate,
+                endDate: educationFormData.endDate
             }]
         }))
     }
@@ -52,22 +53,27 @@ function Education({setPageContent, setInputShow, inputShow}) {
             type="text"
             name='institution'
             value={educationFormData.institution}
-            onChange={(e) => inputHandler(e, 'education')}
+            onChange={inputHandler}
             placeholder='School'
             />
             <input 
             type="text"
             name='degree'
             value={educationFormData.degree}
-            onChange={(e) => inputHandler(e, 'education')}
+            onChange={inputHandler}
             placeholder='Degree'
             />
             <input 
-            type="text"
-            name='year'
-            value={educationFormData.year}
-            onChange={(e) => inputHandler(e, 'education')}
-            placeholder='Name'
+            type="date"
+            name='startDate'
+            value={educationFormData.startDate}
+            onChange={inputHandler}
+            />
+            <input 
+            type="date"
+            name='endDate'
+            value={educationFormData.endDate}
+            onChange={inputHandler}
             />
         </div>
         )}

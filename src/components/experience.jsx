@@ -15,10 +15,10 @@ function Experience({setPageContent, setInputShow, inputShow}) {
         setPageContent((prevPage) => ({
             ...prevPage,
             experience: [{
-                key: experienceFormData.key,
                 workPlace: experienceFormData.workPlace,
                 title: experienceFormData.title,
-                date: experienceFormData.date,
+                startDate: experienceFormData.startDate,
+                endDate: experienceFormData.endDate,
                 description: experienceFormData.description
             }]
         }))
@@ -47,7 +47,7 @@ function Experience({setPageContent, setInputShow, inputShow}) {
     }
 
     return (
-    <form action="" onSubmit={(e) => submitHandler(e, 'experience')}>
+    <form action="" onSubmit={submitHandler}>
         <h2>Experience</h2>
         {inputShow.experience && (
         <div>
@@ -55,28 +55,33 @@ function Experience({setPageContent, setInputShow, inputShow}) {
             type="text"
             name='workPlace'
             value={experienceFormData.workPlace}
-            onChange={(e) => inputHandler(e, 'experience')}
+            onChange={inputHandler}
             placeholder='Company'
             />
             <input 
             type="text"
             name='title'
             value={experienceFormData.title}
-            onChange={(e) => inputHandler(e, 'experience')}
+            onChange={inputHandler}
             placeholder='Position'
             />
             <input 
-            type="text"
-            name='date'
-            value={experienceFormData.date}
-            onChange={(e) => inputHandler(e, 'experience')}
-            placeholder='Name'
+            type="date"
+            name='startDate'
+            value={experienceFormData.startDate}
+            onChange={inputHandler}
+            />
+            <input 
+            type="date"
+            name='endDate'
+            value={experienceFormData.endDate}
+            onChange={inputHandler}
             />
             <input 
             type="text"
             name='description'
             value={experienceFormData.description}
-            onChange={(e) => inputHandler(e, 'experience')}
+            onChange={inputHandler}
             placeholder='Responsibility'
             />
         </div>
