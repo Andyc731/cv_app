@@ -1,4 +1,55 @@
-function Experience(inputShow, experienceFormData, inputHandler, buttonHandler, submitHandler) {
+import { useState } from "react";
+
+function Experience({setPageContent, setInputShow, inputShow}) {
+
+    const [experienceFormData, setExperienceFormData] = useState({
+        workPlace: '',
+        title: '',
+        date: '',
+        description: ''
+      })
+
+    const submitHandler = (event) => {
+
+        event.preventDefault();
+    
+
+          setPageContent((prevPage) => ({
+            ...prevPage,
+            experience: [{
+              key: experienceFormData.key,
+              workPlace: experienceFormData.workPlace,
+              title: experienceFormData.title,
+              date: experienceFormData.date,
+              description: experienceFormData.description
+            }]
+          }))
+
+      }
+
+      const inputHandler = (event) => {
+        const {name, value} = event.target;
+
+
+          setExperienceFormData((prevForm) => ({
+            ...prevForm,
+            [name]: value
+          }))
+      }
+
+      const buttonHandler = (event) => {
+        event.target.type === 'button' ? 
+        setInputShow(prevShow => ({
+          ...prevShow,
+          [event.target.name]: true
+        }))
+        :
+        setInputShow(prevShow => ({
+          ...prevShow,
+          [event.target.name]: false
+        }))
+      }
+
     return (
     <form action="" onSubmit={(e) => submitHandler(e, 'experience')}>
         <h2>Experience</h2>

@@ -1,6 +1,49 @@
-function General(inputShow, generalFormData, inputHandler, buttonHandler, submitHandler) {
+import { useState } from "react";
+
+function General({setPageContent, setInputShow, inputShow}) {
+
+    const [generalFormData, setGeneralFormData] = useState({
+        name: 'Andy Chung',
+        email: 'andychc731@gmail.com',
+        phone: '555-555-5555',
+      });
+
+      const inputHandler = (event) => {
+        const {name, value} = event.target;
+        
+          setGeneralFormData((prevForm) => ({
+            ...prevForm,
+            [name]: value,
+          }))
+    }
+
+    const submitHandler = (event) => {
+
+        event.preventDefault();
+    
+          setPageContent((prevPage) => ({
+            ...prevPage,
+            name: generalFormData.name,
+            email: generalFormData.email,
+            phone: generalFormData.phone
+          }));
+    }
+
+    const buttonHandler = (event) => {
+        event.target.type === 'button' ? 
+        setInputShow(prevShow => ({
+          ...prevShow,
+          [event.target.name]: true
+        }))
+        :
+        setInputShow(prevShow => ({
+          ...prevShow,
+          [event.target.name]: false
+        }))
+      }
+
     return (
-    <form action="" onSubmit={(e) => submitHandler(e, 'general')}>
+    <form action="" onSubmit={submitHandler}>
         <h2>General</h2>
         {inputShow.general && (
         <div>
@@ -8,21 +51,21 @@ function General(inputShow, generalFormData, inputHandler, buttonHandler, submit
             type="text"
             name='name'
             value={generalFormData.name}
-            onChange={(e) => inputHandler(e, 'general')}
+            onChange={inputHandler}
             placeholder='Name'
             />
             <input 
             type="email"
             name='email'
             value={generalFormData.email}
-            onChange={(e) => inputHandler(e, 'general')}
+            onChange={inputHandler}
             placeholder='Email'
             />
             <input 
             type="tel"
             name='phone'
             value={generalFormData.phone}
-            onChange={(e) => inputHandler(e, 'general')}
+            onChange={inputHandler}
             placeholder='Phone'
             />
         </div>

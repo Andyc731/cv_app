@@ -1,8 +1,51 @@
-function Education(inputShow, educationFormData, inputHandler, buttonHandler, submitHandler) {
+import { useState } from "react";
+
+function Education({setPageContent, setInputShow, inputShow}) {
+
+    const [educationFormData, setEducationFormData] = useState({
+        institution: '',
+        degree: '',
+        year: '',
+      })
     
+    const submitHandler = (event) => {
+
+        event.preventDefault();
+    
+          setPageContent((prevPage) => ({
+            ...prevPage,
+            education: [{
+              key: educationFormData.key,
+              institution: educationFormData.institution,
+              degree: educationFormData.degree,
+              year: educationFormData.year,
+            }]
+          }))
+    }
+
+    const inputHandler = (event, formType) => {
+        const {name, value} = event.target;
+          setEducationFormData((prevForm) => ({
+            ...prevForm,
+            [name]: value
+          }))
+    }
+
+    const buttonHandler = (event) => {
+        event.target.type === 'button' ? 
+        setInputShow(prevShow => ({
+          ...prevShow,
+          [event.target.name]: true
+        }))
+        :
+        setInputShow(prevShow => ({
+          ...prevShow,
+          [event.target.name]: false
+        }))
+      }
 
     return (
-    <form action="" onSubmit={(e) => submitHandler(e, 'education')}>
+    <form action="" onSubmit={submitHandler}>
         <h2>Education</h2>
         {inputShow.education && (
         <div>
