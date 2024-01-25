@@ -5,9 +5,12 @@ function Experience({setPageContent, setInputShow, inputShow}) {
     const [experienceFormData, setExperienceFormData] = useState([{
         workPlace: '',
         title: '',
-        date: '',
+        startDate: '',
+        endDate: '',
         description: ''
     }])
+
+    const [count, setCount] = useState(0);
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -45,18 +48,31 @@ function Experience({setPageContent, setInputShow, inputShow}) {
     }
 
     const newButtonHandler = () => {
+        if (count < 3) {
+            setExperienceFormData((prevForm) => {
+                const updatedForm = [...prevForm]
+                updatedForm.push(
+                    {
+                        workPlace: '',
+                        title: '',
+                        startDate: '',
+                        endDate: '',
+                        description: ''
+                    }
+                )
+                return updatedForm;
+            })
+            setCount(prevCount => prevCount + 1);
+        }
+    }
+
+    const deleteButtonHandler = (e, index) => {
         setExperienceFormData((prevForm) => {
             const updatedForm = [...prevForm]
-            updatedForm.push(
-                {
-                    workPlace: '',
-                    title: '',
-                    date: '',
-                    description: ''
-                }
-            )
+            updatedForm.splice(index, 1);
             return updatedForm;
         })
+        setCount(prevCount => prevCount - 1);
     }
 
     return (
@@ -65,7 +81,8 @@ function Experience({setPageContent, setInputShow, inputShow}) {
         {inputShow.experience && (
         <div>
             {experienceFormData.map((experience, index)=> (
-                <div key={index} className="input-container">
+                <div key={`experience-${index}`} className="input-container">
+                    <button className="delete-button" onClick={e => deleteButtonHandler(e, index)}>X</button>
                     <div>
                         <input 
                         type="text"
@@ -83,19 +100,21 @@ function Experience({setPageContent, setInputShow, inputShow}) {
                         />
                     </div>
                     <div className="date-container">
-                        <label htmlFor="startDate">Start Date: </label>
+                        <label htmlFor={`startDate${index}`}>Start Date: </label>
                         <input 
                         type="date"
                         name='startDate'
                         value={experience.startDate}
                         onChange={(e => {inputHandler(e, index)})}
+                        id={`startDate${index}`}
                         />
-                        <label htmlFor="endDate">End Date: </label>
+                        <label htmlFor={`endDate${index}`}>End Date: </label>
                         <input 
                         type="date"
                         name='endDate'
                         value={experience.endDate}
                         onChange={(e => {inputHandler(e, index)})}
+                        id={`endDate${index}`}
                         />
         
                     </div>
