@@ -48,7 +48,7 @@ function Experience({setPageContent, setInputShow, inputShow}) {
     }
 
     const newButtonHandler = () => {
-        if (count < 3) {
+        if (count < 3 && inputShow.experience) {
             setExperienceFormData((prevForm) => {
                 const updatedForm = [...prevForm]
                 updatedForm.push(

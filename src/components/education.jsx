@@ -46,7 +46,7 @@ function Education({setPageContent, setInputShow, inputShow}) {
     }
 
     const newButtonHandler = () => {
-        if (count < 3) {
+        if (count < 3 && inputShow.education) {
             setEducationFormData((prevForm) => {
                 const updatedForm = [...prevForm]
                 updatedForm.push(
@@ -80,7 +80,7 @@ function Education({setPageContent, setInputShow, inputShow}) {
             <div>
                 {educationFormData.map((education, index) => (
                     <div key={`experience-${index}`} className="input-container">
-                        <button type="button" onClick={deleteButtonHandler} className="delete-button">X</button>
+                        <button type="button" onClick={e => deleteButtonHandler(e, index)} className="delete-button">X</button>
                         <div>
 
                             <input 
