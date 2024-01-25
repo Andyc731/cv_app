@@ -46,7 +46,7 @@ function General({setPageContent, setInputShow, inputShow}) {
     <form action="" onSubmit={submitHandler}>
         <h2>General</h2>
         {inputShow.general && (
-        <div>
+        <div className="input-container general">
             <input 
             type="text"
             name='name'
