@@ -2,33 +2,34 @@ import { useState } from "react";
 
 function Education({setPageContent, setInputShow, inputShow}) {
 
-    const [educationFormData, setEducationFormData] = useState({
+    const [educationFormData, setEducationFormData] = useState([{
         institution: '',
         degree: '',
         startDate: '',
         endDate: ''
-    })
+    }])
+
+    const [count, setCount] = useState(0);
     
     const submitHandler = (event) => {
         event.preventDefault();
     
         setPageContent((prevPage) => ({
             ...prevPage,
-            education: [{
-                institution: educationFormData.institution,
-                degree: educationFormData.degree,
-                startDate: educationFormData.startDate,
-                endDate: educationFormData.endDate
-            }]
+            education: educationFormData
         }))
     }
 
-    const inputHandler = (event, formType) => {
+    const inputHandler = (event, index) => {
         const {name, value} = event.target;
-        setEducationFormData((prevForm) => ({
-            ...prevForm,
-            [name]: value
-        }))
+        setEducationFormData((prevForm) => {
+            const updatedForm = [...prevForm]
+            updatedForm[index] = {
+                ...updatedForm[index],
+                [name]: value
+            }
+            return updatedForm;
+        })
     }
 
     const buttonHandler = (event) => {
@@ -44,47 +45,83 @@ function Education({setPageContent, setInputShow, inputShow}) {
         }))
     }
 
+    const newButtonHandler = () => {
+        if (count < 3) {
+            setEducationFormData((prevForm) => {
+                const updatedForm = [...prevForm]
+                updatedForm.push(
+                    {
+                        institution: '',
+                        degree: '',
+                        startDate: '',
+                        endDate: '',
+                    }
+                )
+                return updatedForm;
+            })
+            setCount(prevCount => prevCount + 1);
+        }
+    }
+
+    const deleteButtonHandler = (e, index) => {
+        setEducationFormData((prevForm) => {
+            const updatedForm = [...prevForm]
+            updatedForm.splice(index, 1);
+            return updatedForm;
+        })
+        setCount(prevCount => prevCount - 1);
+    }
+
+
     return (
     <form action="" onSubmit={submitHandler}>
         <h2>Education</h2>
         {inputShow.education && (
-        <div className="input-container">
             <div>
+                {educationFormData.map((education, index) => (
+                    <div key={`experience-${index}`} className="input-container">
+                        <button type="button" onClick={deleteButtonHandler} className="delete-button">X</button>
+                        <div>
 
-                <input 
-                type="text"
-                name='institution'
-                value={educationFormData.institution}
-                onChange={inputHandler}
-                placeholder='School'
-                />
-                <input 
-                type="text"
-                name='degree'
-                value={educationFormData.degree}
-                onChange={inputHandler}
-                placeholder='Degree'
-                />
-            </div>
-            <div className="date-container">
-                <label htmlFor="startDate">Start Date: </label>
-                <input 
-                type="date"
-                name='startDate'
-                value={educationFormData.startDate}
-                onChange={inputHandler}
-                />
-                <label htmlFor="endDate">End Date: </label>
-                <input 
-                type="date"
-                name='endDate'
-                value={educationFormData.endDate}
-                onChange={inputHandler}
-                />
+                            <input 
+                            type="text"
+                            name='institution'
+                            value={education.institution}
+                            onChange={e => {inputHandler(e, index)}}
+                            placeholder='School'
+                            />
+                            <input 
+                            type="text"
+                            name='degree'
+                            value={education.degree}
+                            onChange={e => {inputHandler(e, index)}}
+                            placeholder='Degree'
+                            />
+                        </div>
+                        <div className="date-container">
+                            <label htmlFor="startDate">Start Date: </label>
+                            <input 
+                            type="date"
+                            name='startDate'
+                            value={education.startDate}
+                            onChange={e => {inputHandler(e, index)}}
+                            />
+                            <label htmlFor="endDate">End Date: </label>
+                            <input 
+                            type="date"
+                            name='endDate'
+                            value={education.endDate}
+                            onChange={e => {inputHandler(e, index)}}
+                            />
+
+                        </div>
+                    </div>
+
+                ))}
 
             </div>
-        </div>
         )}
+        <button type="button" name="education" onClick={newButtonHandler}>New</button>
         <button type='button' name='education' onClick={buttonHandler}>Edit</button>
         <button type='submit' name='education' onClick={buttonHandler}>Submit</button>
     </form>
