@@ -121,9 +121,13 @@ function Education({setPageContent, setInputShow, inputShow}) {
 
             </div>
         )}
-        <button type="button" name="education" onClick={newButtonHandler}>New</button>
+        {inputShow.education && (
+            <button type="button" name="education" onClick={newButtonHandler}>New</button>
+        )}
         <button type='button' name='education' onClick={buttonHandler}>Edit</button>
-        <button type='submit' name='education' onClick={buttonHandler}>Submit</button>
+        {inputShow.education && (
+            <button type='submit' name='education' onClick={buttonHandler}>Submit</button>
+        )}
     </form>
     );
 }

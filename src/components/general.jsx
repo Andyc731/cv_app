@@ -71,7 +71,9 @@ function General({setPageContent, setInputShow, inputShow}) {
         </div>
         )}
         <button type='button' name='general' onClick={buttonHandler}>Edit</button>
-        <button type='submit' name='general' onClick={buttonHandler}>Submit</button>
+        {inputShow.general && (
+            <button type='submit' name='general' onClick={buttonHandler}>Submit</button>
+        )}
     </form>
     )
 }

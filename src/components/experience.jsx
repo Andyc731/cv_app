@@ -131,9 +131,13 @@ function Experience({setPageContent, setInputShow, inputShow}) {
 
         </div>
         )}
-        <button type="button" name='experience' onClick={newButtonHandler}>New</button>
+        {inputShow.experience && (
+            <button type="button" name='experience' onClick={newButtonHandler}>New</button>
+        )}
         <button type='button' name='experience' onClick={buttonHandler}>Edit</button>
-        <button type='submit' name='experience' onClick={buttonHandler}>Submit</button>
+        {inputShow.experience && (
+            <button type='submit' name='experience' onClick={buttonHandler}>Submit</button>
+        )}
     </form>
     )
 }
