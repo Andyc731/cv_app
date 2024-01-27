@@ -13,7 +13,7 @@ function Form() {
     name: 'Andy Chung',
     email: 'andychc731@gmail.com',
     phone: '555-555-5555',
-    education: [{institution: 'University of Blah', degree: 'Computer Science', startDate: '2013-03-04', endDate: '2014-06-07'}],
+    education: [{institution: 'University of Blah', degree: 'Computer Science', startDate: '2013-03', endDate: '2014-06'}],
     experience: [{workPlace: 'Pizzalappa', title: 'Cashier', startDate: '2013-03-04', endDate: '2014-06-07', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam venenatis, risus sit amet elementum eleifend, metus dolor finibus orci, id luctus nisi ipsum id tortor. Cras sodales facilisis finibus. Donec venenatis suscipit ante, sit amet finibus odio ultrices sed. Aliquam a fringilla erat. Nunc sagittis id ante sit amet accumsan. Etiam id mi egestas, semper dui sit amet, varius lectus. Morbi et finibus ligula. Sed quis commodo mi, in ullamcorper elit.'}]
   });
 
