@@ -3,11 +3,11 @@ import { useState } from "react";
 function Experience({setPageContent, setInputShow, inputShow}) {
 
     const [experienceFormData, setExperienceFormData] = useState([{
-        workPlace: '',
-        title: '',
-        startDate: '',
-        endDate: '',
-        description: ''
+        workPlace: 'Pizzalappa',
+        title: 'Cashier',
+        startDate: '2013-03',
+        endDate: '2014-06',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam venenatis, risus sit amet elementum eleifend, metus dolor finibus orci, id luctus nisi ipsum id tortor. Cras sodales facilisis finibus. Donec venenatis suscipit ante, sit amet finibus odio ultrices sed. Aliquam a fringilla erat. Nunc sagittis id ante sit amet accumsan. Etiam id mi egestas, semper dui sit amet, varius lectus. Morbi et finibus ligula. Sed quis commodo mi, in ullamcorper elit.'
     }])
 
     const [count, setCount] = useState(0);

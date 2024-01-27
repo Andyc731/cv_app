@@ -3,10 +3,10 @@ import { useState } from "react";
 function Education({setPageContent, setInputShow, inputShow}) {
 
     const [educationFormData, setEducationFormData] = useState([{
-        institution: '',
-        degree: '',
-        startDate: '',
-        endDate: ''
+        institution: 'University of Blah',
+        degree: 'Computer Science',
+        startDate: '2013-03',
+        endDate: '2014-06'
     }])
 
     const [count, setCount] = useState(0);
