@@ -14,6 +14,11 @@ function Experience({setPageContent, setInputShow, inputShow}) {
 
     const submitHandler = (event) => {
         event.preventDefault();
+
+        setInputShow(prevShow => ({
+            ...prevShow,
+            experience: false
+        }))
     
         setPageContent((prevPage) => ({
             ...prevPage,
@@ -35,15 +40,9 @@ function Experience({setPageContent, setInputShow, inputShow}) {
     }
 
     const buttonHandler = (event) => {
-        event.target.type === 'button' ? 
         setInputShow(prevShow => ({
             ...prevShow,
             [event.target.name]: true
-        }))
-        :
-        setInputShow(prevShow => ({
-            ...prevShow,
-            [event.target.name]: false
         }))
     }
 
@@ -102,7 +101,7 @@ function Experience({setPageContent, setInputShow, inputShow}) {
                     <div className="date-container">
                         <label htmlFor={`startDate${index}`}>Start Date: </label>
                         <input 
-                        type="date"
+                        type="month"
                         name='startDate'
                         value={experience.startDate}
                         onChange={(e => {inputHandler(e, index)})}
@@ -110,7 +109,7 @@ function Experience({setPageContent, setInputShow, inputShow}) {
                         />
                         <label htmlFor={`endDate${index}`}>End Date: </label>
                         <input 
-                        type="date"
+                        type="month"
                         name='endDate'
                         value={experience.endDate}
                         onChange={(e => {inputHandler(e, index)})}
@@ -136,7 +135,7 @@ function Experience({setPageContent, setInputShow, inputShow}) {
         )}
         <button type='button' name='experience' onClick={buttonHandler}>Edit</button>
         {inputShow.experience && (
-            <button type='submit' name='experience' onClick={buttonHandler}>Submit</button>
+            <button type='submit' name='experience'>Submit</button>
         )}
     </form>
     )

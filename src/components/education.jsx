@@ -14,6 +14,11 @@ function Education({setPageContent, setInputShow, inputShow}) {
     const submitHandler = (event) => {
         event.preventDefault();
     
+        setInputShow(prevShow => ({
+            ...prevShow,
+            education: false
+        }))
+
         setPageContent((prevPage) => ({
             ...prevPage,
             education: educationFormData
@@ -33,15 +38,9 @@ function Education({setPageContent, setInputShow, inputShow}) {
     }
 
     const buttonHandler = (event) => {
-        event.target.type === 'button' ? 
         setInputShow(prevShow => ({
             ...prevShow,
             [event.target.name]: true
-        }))
-        :
-        setInputShow(prevShow => ({
-            ...prevShow,
-            [event.target.name]: false
         }))
     }
 
@@ -101,14 +100,14 @@ function Education({setPageContent, setInputShow, inputShow}) {
                         <div className="date-container">
                             <label htmlFor="startDate">Start Date: </label>
                             <input 
-                            type="date"
+                            type="month"
                             name='startDate'
                             value={education.startDate}
                             onChange={e => {inputHandler(e, index)}}
                             />
                             <label htmlFor="endDate">End Date: </label>
                             <input 
-                            type="date"
+                            type="month"
                             name='endDate'
                             value={education.endDate}
                             onChange={e => {inputHandler(e, index)}}
@@ -126,7 +125,7 @@ function Education({setPageContent, setInputShow, inputShow}) {
         )}
         <button type='button' name='education' onClick={buttonHandler}>Edit</button>
         {inputShow.education && (
-            <button type='submit' name='education' onClick={buttonHandler}>Submit</button>
+            <button type='submit' name='education'>Submit</button>
         )}
     </form>
     );

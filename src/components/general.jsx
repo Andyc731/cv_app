@@ -10,17 +10,23 @@ function General({setPageContent, setInputShow, inputShow}) {
 
     const inputHandler = (event) => {
         const {name, value} = event.target;
+
         
         setGeneralFormData((prevForm) => ({
             ...prevForm,
             [name]: value,
         }))
     }
-
-    const submitHandler = (event) => {
-
-        event.preventDefault();
     
+    const submitHandler = (event) => {
+        
+        event.preventDefault();
+
+        setInputShow(prevShow => ({
+            ...prevShow,
+            general: false
+        }))
+
         setPageContent((prevPage) => ({
             ...prevPage,
             name: generalFormData.name,
@@ -29,16 +35,10 @@ function General({setPageContent, setInputShow, inputShow}) {
         }));
     }
 
-    const buttonHandler = (event) => {
-        event.target.type === 'button' ? 
+    const buttonHandler = () => {
         setInputShow(prevShow => ({
             ...prevShow,
-            [event.target.name]: true
-        }))
-        :
-        setInputShow(prevShow => ({
-            ...prevShow,
-            [event.target.name]: false
+            general: true
         }))
     }
 
@@ -72,7 +72,7 @@ function General({setPageContent, setInputShow, inputShow}) {
         )}
         <button type='button' name='general' onClick={buttonHandler}>Edit</button>
         {inputShow.general && (
-            <button type='submit' name='general' onClick={buttonHandler}>Submit</button>
+            <button type='submit' name='general'>Submit</button>
         )}
     </form>
     )
